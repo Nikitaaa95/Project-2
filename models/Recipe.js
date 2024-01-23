@@ -38,6 +38,10 @@ Recipe.init(
         key: 'id',
       },
     },
+    rec_username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
   {
     sequelize,
