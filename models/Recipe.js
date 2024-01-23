@@ -59,10 +59,6 @@ Recipe.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    user: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     recipe_id: {
       type: DataTypes.INTEGER,
       references: {
