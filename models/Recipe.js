@@ -21,11 +21,11 @@ Recipe.init(
     },
     preptime: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     cooktime: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     ingredients: {
       type: DataTypes.STRING,
@@ -59,17 +59,17 @@ Recipe.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    recipe_id: {
+    user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'recipe',
+        model: 'user',
         key: 'id',
       },
     },
-    rec_username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+    // rec_username: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    // },
   },
   {
     sequelize,
