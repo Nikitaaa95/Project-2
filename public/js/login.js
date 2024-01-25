@@ -26,19 +26,20 @@ const loginFormHandler = async (event) => {
 const signupFormHandler = async (event) => {
   event.preventDefault();
 
-  const username = document.querySelector('#userName-signup').value.trim();
-  //const email = document.querySelector('#email-signup').value.trim();
+  const name = document.querySelector('#userName-signup').value.trim();
   const password = document.querySelector('#password-signup').value.trim();
 
-  if (username && password) {
+  if (name && password) {
+    console.log(name);
+    console.log(password);
     const response = await fetch('/api/users', {
       method: 'POST',
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ name, password }),
       headers: { 'Content-Type': 'application/json' },
     });
 
     if (response.ok) {
-      document.location.replace('www.google.com');
+      document.location.replace('/');
     } else {
       alert('Failed to sign up.');
     }
