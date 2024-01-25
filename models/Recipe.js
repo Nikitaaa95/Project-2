@@ -15,6 +15,10 @@ Recipe.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    image: {
+      type: DataTypes.BLOB('long'),
+      allowNull: true,
+    },
     preptime: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -27,9 +31,33 @@ Recipe.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    steps: {
+    difficulty: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    step1: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    step2: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    step3: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    step4: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    step5: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    step6: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     recipe_id: {
       type: DataTypes.INTEGER,
