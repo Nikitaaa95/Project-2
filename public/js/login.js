@@ -2,15 +2,15 @@
 const loginFormHandler = async (event) => {
   event.preventDefault();
 
-  const email = document.querySelector('#email-login').value.trim();
+  const name = document.querySelector('#userName-login').value.trim();
   const password = document.querySelector('#password-login').value.trim();
 
-  if (email && password) {
-    console.log(email);
+  if (name && password) {
+    console.log(name);
     console.log(password);
     const response = await fetch('/api/users/login', {
       method: 'POST',
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ name, password }),
       headers: { 'Content-Type': 'application/json' },
     });
 
@@ -27,18 +27,18 @@ const signupFormHandler = async (event) => {
   event.preventDefault();
 
   const username = document.querySelector('#userName-signup').value.trim();
-  const email = document.querySelector('#email-signup').value.trim();
+  //const email = document.querySelector('#email-signup').value.trim();
   const password = document.querySelector('#password-signup').value.trim();
 
-  if (username && email && password) {
+  if (username && password) {
     const response = await fetch('/api/users', {
       method: 'POST',
-      body: JSON.stringify({ username, email, password }),
+      body: JSON.stringify({ username, password }),
       headers: { 'Content-Type': 'application/json' },
     });
 
     if (response.ok) {
-      document.location.replace('/');
+      document.location.replace('www.google.com');
     } else {
       alert('Failed to sign up.');
     }
@@ -46,9 +46,9 @@ const signupFormHandler = async (event) => {
 };
 
 document
-  .querySelector('.login-form')
+  .querySelector('.login-Form')
   .addEventListener('submit', loginFormHandler);
 
 document
-  .querySelector('.signup-form')
+  .querySelector('.signupSection')
   .addEventListener('submit', signupFormHandler);
