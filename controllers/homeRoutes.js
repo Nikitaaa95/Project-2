@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Recipe } = require('../models');
+const { Recipe, User } = require('../models');
 // Import the custom middleware
 const withAuth = require('../utils/auth');
 
@@ -15,19 +15,72 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Get the recipe submission page to render 
-router.get('/profile', async (req, res) => {
-  console.log('getroute')
+
+router.get('/recipe/:id', async (req, res) => {
   try {
-    res.render('profile', {
+    const recipeData = await Recipe.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
     });
-    console.log("rendered login")
+    const recipes = recipeData.get({ plain: true });
+    res.render('recipe', {
+      ...recipes,
+      logged_in: req.session.logged_in
+    });
   } catch (err) {
     res.status(500).json(err);
   }
 });
-  
 
+// router.get('/profile', async (req, res) => {
+//   console.log('getroute2')
+//   try {
+//     res.render('profile', {
+//     });
+//     console.log("rendered login")
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+// Get the recipe submission page to render 
+router.get('/profile', withAuth, async (req, res) => {
+  console.log("1");
+  try {
+    // Find the logged in user based on the session ID
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+    });
+    const user = userData.get({ plain: true });
+
+    console.log("profile handlebars: " + JSON.stringify({
+      ...user,
+      logged_in: true
+    }))
+
+    res.render('profile', {
+      ...user,
+      logged_in: true
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+router.get('/login', (req, res) => {
+  // If the user is already logged in, redirect the request to another route
+  if (req.session.logged_in) {
+    res.redirect('/profile');
+    return;
+  }
+  res.render('login');
+});
+module.exports = router;
 // .recipeData.json 
 
 // router.get('/', async (req, res) => {
@@ -87,5 +140,3 @@ router.get('/profile', async (req, res) => {
 // router.get('/', async (req, res) => {
 //   return res.render('login');
 // });
-
-module.exports = router;
