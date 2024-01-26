@@ -10,18 +10,9 @@
 
 <body>
   <div class="flex-column justify-space-around">
-    <header class="display-flex justify-space-between align-center p-2">
-      <h1>
-        <a href="/">Recipe Blog name!</a>
-      </h1>
-      <nav>
-        {{#if logged_in}}
-        <a href="/profile">profile</a> |
-        <button  id="logout" class="btn-no-style">logout</button>
-        {{else}}
-        <a href="/login">login</a>
-        {{/if}}
-      </nav>
+    <header class="title flex items-center justify-end">
+        <h1 class="text-3xl font-bold">Culinary Canvas</h1>
+        <img src="/public/pallette.png" alt="Your Image Description" class="w-16 h-16 mr-2">
     </header>
     <main class="container container-fluid mt-5">
       {{{ body }}}
