@@ -15,77 +15,75 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Get the recipe submission page to render 
-router.get('/profile', async (req, res) => {
-  console.log('getroute')
-  try {
-    res.render('profile', {
-    });
-    console.log("rendered login")
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-  
-
-// .recipeData.json 
-
-// router.get('/', async (req, res) => {
+// // Get the profile page to render 
+// router.get('/profile', async (req, res) => {
+//   console.log('getroute')
 //   try {
-//     // Get all projects and JOIN with user data
-//     const recipeData = await Recipe.findAll({
-//       include: [
-//         {
-//           model: User,
-//           attributes: ['name'],
-//         },
-//       ],
+//     res.render('profile', {
 //     });
-
-//     // Serialize data so the template can read it
-//     const recipes = recipeData.map((recipe) => recipe.get({ plain: true }));
-
-//     // Pass serialized data and session flag into template
-//     res.render('homepage', { 
-//       recipes, 
-//       logged_in: req.session.logged_in 
-//     });
+//     console.log("rendered login")
 //   } catch (err) {
 //     res.status(500).json(err);
 //   }
 // });
 
+// Gets one recipe by the id and posts it to the recipe page 
+router.get('/recipe/:id', async (req, res) => {
+  try {
+    const recipeData = await Recipe.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
+    });
 
-// router.get('/login', (req, res) => {
-//   // If a session exists, redirect the request to the homepage
-//   if (req.session.logged_in) {
-//     res.redirect('/');
-//     return;
-//   }
+    const recipes = recipeData.get({ plain: true });
 
-//   res.render('login');
-// });
+    res.render('recipe', {
+      ...recipes,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
-// // Renders the dashboard 
-// router.get('/dashboard', withAuth, async (req, res) => {
+// Use withAuth middleware to prevent access to route
+router.get('/profile', withAuth, async (req, res) => {
+  try {
+    
+    // Find the logged in user based on the session ID
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Recipe }],
+    });
 
-//   // Get the user first using the user's id and then getting all the Posts associated with the User's id
-//   const recipeData = await User.findByPk(req.session.user_id, {
-//     attributes: { exclude: ['password'] },
-//     include: [{ model: Post}],
-//   });
+    const user = userData.get({ plain: true });
 
-//   const user = recipeData.get({ plain: true });
+    console.log("profile handlebars: " + JSON.stringify({
+      ...user,
+      logged_in: true
+    }))
 
-//   console.log("user: " + JSON.stringify(user))
+    res.render('profile', {
+      ...user,
+      logged_in: true
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
-//   // Renders dashboard.handlebars
-//   res.render('dashboard',   { ...user,
-//     logged_in: true });
-//   });
+router.get('/login', (req, res) => {
+  // If the user is already logged in, redirect the request to another route
+  if (req.session.logged_in) {
+    res.redirect('/profile');
+    return;
+  }
 
-// router.get('/', async (req, res) => {
-//   return res.render('login');
-// });
+  res.render('login');
+});
 
 module.exports = router;

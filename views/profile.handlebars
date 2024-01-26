@@ -83,15 +83,14 @@
     </section>
     </container>
 
-
-{{!-- Handlebars to loop through all the posts and retrieve them --}}
+{{!-- Handlebars to loop through all the recipes and retrieve them --}}
   {{#if recipes.length}}
   <div class="col-md-6 blog-list">
     <h3>Current Recipes:</h3>
     {{#each recipes as |recipe|}}
     <div class="row mb-2">
       <div class="col-md-8">
-        <h4><a href="/api/post/{{recipe.id}}">{{recipe.title}}{{recipe.difficulty}}</a></h4>
+        <h4><a href="/api/recipes/{{recipe.id}}">{{recipe.title}}{{recipe.difficulty}}</a></h4>
       </div>
     </div>
     {{/each}}

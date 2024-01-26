@@ -40,7 +40,6 @@ const newFormHandler = async (event) => {
           'Content-Type': 'application/json',
         },
       });
-    // console.log(await response.json());
    
     
     if (response.ok) {
@@ -57,9 +56,3 @@ document
 console.log('check')
 
 
-function sendtoDB() {
-    
-    //fetch request to API endpoint
-    //post request to routes under the API file
-    //the route(CONTROLLER/SQL) will take the data that its passed to the DB
-};
