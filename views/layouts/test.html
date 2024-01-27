@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fund My Project!</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+</head>
 <body >
     
     <container class="flex flex-col md:flex-row">
@@ -57,21 +66,20 @@
             <button class="px-4 py-2 bg-blue-500 text-white rounded-r-md">Search</button>
         </div>  
           {{#if recipes.length}}
-         <div class="col-md-6 blog-list">
-        <h3>Current Recipes:</h3>
+          <div class="col-md-6 blog-list">
+            <h3>Current Recipes:</h3>
             {{#each recipes as |recipe|}}
-        <section class="md:w-1/2 bg-white p-8 my-8 md:ml-4 rounded-lg shadow-md">
+            <section class="md:w-1/2 bg-white p-8 my-8 md:ml-4 rounded-lg shadow-md">
             <div class="row mb-2 w-full">
-            <div class="col-md-8">
+              <div class="col-md-8">
                 <h4><a href="/api/recipes/{{recipe.id}}">{{recipe.title}}</a></h4>
                 <p>{{recipe.difficulty}}</p>
+              </div>
             </div>
-            </div>
-            </section>
-             {{/each}}
-            </div>
-            {{/if}}
-
+            {{/each}}
+          </div>
+          </section>
+          {{/if}}
         </div>
     </section>
     </container>
