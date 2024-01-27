@@ -15,23 +15,22 @@ router.get('/', async (req, res) => {
   }
 });
 
-
-router.get('/recipe/:id', async (req, res) => {
+// renders the current recipes on profile page 
+router.get('/profile', withAuth, async (req, res) => {
   try {
-    const recipeData = await Recipe.findByPk(req.params.id, {
-      include: [
-        {
-          model: User,
-          attributes: ['name'],
-        },
-      ],
+    // Find the logged in user based on the session ID
+    const recipeData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Recipe}],
     });
-    const recipes = recipeData.get({ plain: true });
-    res.render('recipe', {
-      ...recipes,
-      logged_in: req.session.logged_in
+    const recipe = recipeData.get({ plain: true });
+
+    res.render('profile', {
+      ...recipe,
+      logged_in: true
     });
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
@@ -47,31 +46,6 @@ router.get('/recipe/:id', async (req, res) => {
 //   }
 // });
 
-// Get the recipe submission page to render 
-router.get('/profile', withAuth, async (req, res) => {
-  console.log("1");
-  try {
-    // Find the logged in user based on the session ID
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
-    });
-    const user = userData.get({ plain: true });
-
-    console.log("profile handlebars: " + JSON.stringify({
-      ...user,
-      logged_in: true
-    }))
-
-    res.render('profile', {
-      ...user,
-      logged_in: true
-    });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
-
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
@@ -81,7 +55,6 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 module.exports = router;
-// .recipeData.json 
 
 // router.get('/', async (req, res) => {
 //   try {
@@ -106,37 +79,4 @@ module.exports = router;
 //   } catch (err) {
 //     res.status(500).json(err);
 //   }
-// });
-
-
-// router.get('/login', (req, res) => {
-//   // If a session exists, redirect the request to the homepage
-//   if (req.session.logged_in) {
-//     res.redirect('/');
-//     return;
-//   }
-
-//   res.render('login');
-// });
-
-// // Renders the dashboard 
-// router.get('/dashboard', withAuth, async (req, res) => {
-
-//   // Get the user first using the user's id and then getting all the Posts associated with the User's id
-//   const recipeData = await User.findByPk(req.session.user_id, {
-//     attributes: { exclude: ['password'] },
-//     include: [{ model: Post}],
-//   });
-
-//   const user = recipeData.get({ plain: true });
-
-//   console.log("user: " + JSON.stringify(user))
-
-//   // Renders dashboard.handlebars
-//   res.render('dashboard',   { ...user,
-//     logged_in: true });
-//   });
-
-// router.get('/', async (req, res) => {
-//   return res.render('login');
 // });
