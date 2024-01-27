@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fund My Project!</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+</head>
 <body >
     
     <container class="flex flex-col md:flex-row">
@@ -30,9 +39,9 @@
                 <label for="selectInput" class="block mb-2 text-sm font-small text-gray-900 dark:text-white">Select an option:</label>
                 <select id="selectInput difficulty" name="selectInput" class="difficulty block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option value="" disabled selected>Select One</option>
-                    <option value="Easy">Easy</option>
-                    <option value="Standard">Standard</option>
-                    <option value="Difficult">Difficult</option>
+                    <option value="option1">Easy</option>
+                    <option value="option2">Standard</option>
+                    <option value="option3">Difficult</option>
                 </select>
             </div>            
             <div>
@@ -57,21 +66,20 @@
             <button class="px-4 py-2 bg-blue-500 text-white rounded-r-md">Search</button>
         </div>  
           {{#if recipes.length}}
-         <div class="col-md-6 blog-list">
-        <h3>Current Recipes:</h3>
+          <div class="col-md-6 blog-list">
+            <h3>Current Recipes:</h3>
             {{#each recipes as |recipe|}}
-        <section class="md:w-1/2 bg-white p-8 my-8 md:ml-4 rounded-lg shadow-md">
+            <section class="md:w-1/2 bg-white p-8 my-8 md:ml-4 rounded-lg shadow-md">
             <div class="row mb-2 w-full">
-            <div class="col-md-8">
+              <div class="col-md-8">
                 <h4><a href="/api/recipes/{{recipe.id}}">{{recipe.title}}</a></h4>
                 <p>{{recipe.difficulty}}</p>
+              </div>
             </div>
-            </div>
-            </section>
-             {{/each}}
-            </div>
-            {{/if}}
-
+            {{/each}}
+          </div>
+          </section>
+          {{/if}}
         </div>
     </section>
     </container>
