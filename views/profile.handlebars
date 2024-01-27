@@ -1,41 +1,54 @@
-     <container class="flex flex-col md:flex-row">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tailwind CSS Example</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+</head>
+<body >
+    <header class="title flex items-center justify-end">
+        <h1 class="text-3xl font-bold">Culinary Canvas</h1>
+        <img src="/Users/nikitathomas/bootcamp/Homework/Project-2-Items/public/pallette.png" alt="Your Image Description" class="w-16 h-16 mr-2">
+    </header>
+    <container class="flex flex-col md:flex-row">
     <section class="Recipe-Input md:w-1/2 p-4">
-        <form class="max-w ">
-            <h2 class=" flex items-center justify-center h-full"> Recipe Input</h2>
+        <form class="max-w recipe-form">
+            <h2 class="title flex items-center justify-center h-full"> Recipe Input</h2>
             <div>
-                <label for="small-input" class="title block mb-2 text-sm font-small text-gray-900 dark:text-white">Recipe Title</label>
-                <input type="text" id="small-input" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <label for="small-input" class="block mb-2 text-sm font-small text-gray-900 dark:text-white">Recipe Title</label>
+                <input type="text" id="small-input title" class="recipe-title block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             </div>
             <div class="md:flex md:space-x-4">
                 <div class="image-update mb-5 w-full flex flex-col items-center justify-center">
                     <label for="imageInput" class="inline-block mb-2 text-sm font-small text-gray-900 dark:text-white">Choose an image:</label>
                     <label for="imageInput" class="upload-point inline-block mb-2">
                         <div class="w-24 h-24 bg-gray-200 flex items-center justify-center rounded-md mb-2">
-                            <img src="/public/Icon.jpeg" alt="Upload Icon" class="w-12 h-12 inline-block">
+                            <img src="/Users/nikitathomas/bootcamp/Homework/Project-2-Items/public/Icon.jpeg" alt="Upload Icon" class="w-12 h-12 inline-block">
                         </div>
                     </label>
-                    <input type="file" id="imageInput" name="imageInput" accept="image/*" class="hidden">
+                    <input type="file" id="imageInput imageInput" name="imageInput" accept="image/*" class="hidden">
                 </div>
   
                 <div class="mb-5 timing w-full">
                     <div>
                         <label for="small-input" class="block mb-2 text-sm font-small text-gray-900 dark:text-white">Prep Time</label>
-                        <input type="text" id="small-input" class="prep-time block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <input type="text" id="small-input prep-time" class="prep-time block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     </div>
                     <div>
                     <label for="small-input" class="block mb-2 text-sm font-small text-gray-900 dark:text-white">Cook Time</label>
-                    <input type="text" id="small-input" class="cook-time block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <input type="text" id="small-input cook-time" class="cook-time block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
                 <div class="mb-5">
                     <label for="large-input" class="block mb-2 text-sm font-small text-gray-900 dark:text-white">Ingredients (Separate with commas)</label>
-                    <input type="text" id="large-input" class="ingredients block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <input type="text" id="large-input ingredients" class="ingredients block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
                 </div>
             </div>
             
             <div class="mb-5">
                 <label for="selectInput" class="block mb-2 text-sm font-small text-gray-900 dark:text-white">Select an option:</label>
-                <select id="selectInput" name="selectInput" class="difficulty block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <select id="selectInput difficulty" name="selectInput" class="difficulty block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option value="" disabled selected>Select One</option>
                     <option value="option1">Easy</option>
                     <option value="option2">Standard</option>
@@ -44,12 +57,12 @@
             </div>            
             <div>
                 <label for="small-input" class="block mb-2 text-sm font-small text-gray-900 dark:text-white">Steps</label>
-                <input type="text" id="small-input" class="step1 block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-4">
-                <input type="text" id="small-input" class="step2 block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-4">
-                <input type="text" id="small-input" class="step3 block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-4">
-                <input type="text" id="small-input" class="step4 block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-4">
-                <input type="text" id="small-input" class="step5 block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-4">
-                <input type="text" id="small-input" class="step6 block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-4">
+                <input type="text" id="small-input step1" class="step1 block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-4">
+                <input type="text" id="small-input step2" class="step2 block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-4">
+                <input type="text" id="small-input step3" class="step3 block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-4">
+                <input type="text" id="small-input step4" class="step4 block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-4">
+                <input type="text" id="small-input step5" class="step5 block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-4">
+                <input type="text" id="small-input step6" class="step6 block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-4">
             </div>
             <div class="mt-6">
                 <button type="submit" class="form-submitbg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
@@ -63,7 +76,32 @@
             <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:border-blue-500" placeholder="Search by Title/Keyword">
             <button class="px-4 py-2 bg-blue-500 text-white rounded-r-md">Search</button>
         </div>  
+        <div class="flex items-center w-full Ingredients-search p-1">
+            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:border-blue-500" placeholder="Search by Ingredients">
+            <button class="px-4 py-2 bg-blue-500 text-white rounded-r-md">Search</button>
+        </div>  
     </section>
     </container>
 
+{{!-- Handlebars to loop through all the recipes and retrieve them --}}
+  {{#if recipes.length}}
+  <div class="col-md-6 blog-list">
+    <h3>Current Recipes:</h3>
+    {{#each recipes as |recipe|}}
+    <div class="row mb-2">
+      <div class="col-md-8">
+        <h4><a href="/api/recipes/{{recipe.id}}">{{recipe.title}}{{recipe.difficulty}}</a></h4>
+      </div>
+      <div class="col-md-4">
+        <button class="btn btn-sm btn-danger" data-id="{{recipe.id}}">DELETE</button>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
+</div>
 
+
+     <script src="./js/profilebuttons.js"></script>
+</body>
+</html>

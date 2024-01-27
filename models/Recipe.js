@@ -21,11 +21,11 @@ Recipe.init(
     },
     preptime: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     cooktime: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     ingredients: {
       type: DataTypes.STRING,
@@ -66,6 +66,7 @@ Recipe.init(
         key: 'id',
       },
     },
+
   },
   {
     sequelize,
