@@ -18,27 +18,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.delete('/:id', async (req, res) => {
-  console.log('delete')
-  try {
-    const recipeData = await Recipe.destroy({
-      where: {
-        id: req.params.id,
-        user_id: req.session.user_id,
-      },
-    });
-    
-    if (!recipeData) {
-      res.status(404).json({ message: 'No project found with this id!' });
-      return;
-    }
-    
-    res.status(200).json(recipeData);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
 // Gets one recipe and posts it to the recipe page 
 router.get('/:id', async (req, res) => {
   console.log('get route')

@@ -15,10 +15,6 @@ Recipe.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    image: {
-      type: DataTypes.BLOB('long'),
-      allowNull: true,
-    },
     preptime: {
       type: DataTypes.STRING,
       allowNull: true,
