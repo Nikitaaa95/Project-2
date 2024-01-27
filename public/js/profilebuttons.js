@@ -3,7 +3,7 @@ const newFormHandler = async (event) => {
   //Defining aspects of the form as separate variables
   const title = document.querySelector('.recipe-title').value.trim();
   // DOUBLE CHECK IMAGE FILE TYPE
-  const image = document.querySelector('#upload-point');
+  //   const imageEl = document.querySelector('#upload-point').value.trim();
   const preptime = document.querySelector('.prep-time').value.trim();
   const cooktime = document.querySelector('.cook-time').value.trim();
   const ingredients = document.querySelector('.ingredients').value.trim();
@@ -24,7 +24,6 @@ const newFormHandler = async (event) => {
   const response = await fetch(`/api/recipes`, {
       method: 'POST',
       body: JSON.stringify({
-        image,
         title,
         preptime,
         cooktime,

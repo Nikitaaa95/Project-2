@@ -5,7 +5,6 @@ const withAuth = require('../../utils/auth');
 
 // Post route for creating a new recipe 
 router.post('/', async (req, res) => {
-  console.log('post')
   try {
     console.log('hi ' + JSON.stringify(req.body))
     const newRecipe = await Recipe.create({
@@ -16,6 +15,27 @@ router.post('/', async (req, res) => {
     res.status(200).json(newRecipe);
   } catch (err) {
     res.status(400).json(err);
+  }
+});
+
+router.delete('/:id', async (req, res) => {
+  console.log('delete')
+  try {
+    const recipeData = await Recipe.destroy({
+      where: {
+        id: req.params.id,
+        user_id: req.session.user_id,
+      },
+    });
+    
+    if (!recipeData) {
+      res.status(404).json({ message: 'No project found with this id!' });
+      return;
+    }
+    
+    res.status(200).json(recipeData);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
@@ -50,6 +70,47 @@ router.get('/', (req, res) => {
   }).then((recipeData) => {
     res.json(recipeData);
   });
+});
+
+//   // Updates the recipe post using a get route (generates the html for recipe page)
+// router.get('/:id', async (req, res) => {
+// try {
+//   const recipeData = await Recipe.findByPk(req.params.id, {
+//   include: [
+//     ],
+//   });
+
+//   const recipe = recipeData.get({ plain: true });
+//   console.log("Post: " + JSON.stringify(post))
+//   res.render('recipe', {
+//     ...recipe,
+//     logged_in: req.session.logged_in
+//   });
+// } catch (err) {
+//   res.status(500).json(err);
+// }
+// });
+
+    //Get all the existing blog posts to show on recipes page  
+router.get('/', async (req, res) => {
+  try {
+    // Finds every single post in the post table 
+    const recipeData = await Recipe.findAll({
+      attributes: { exclude: ['password'] },
+      include: [{ model: User}],
+    });
+    
+    const recipes = recipeData.map((recipe) => recipe.get({ plain: true }));
+    console.log('posts' + JSON.stringify(posts))
+
+    res.render('recipe', {
+      recipes,
+      // Pass the logged in flag to the template
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
     module.exports = router;
