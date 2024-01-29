@@ -43,14 +43,50 @@ const newFormHandler = async (event) => {
  
   
   if (response.ok) {
-      document.location.replace('/profile');
+     document.location.replace('/profile');
+      console.log(response);
   } else {
       alert('Failed to create blog post');
   }
   // }
 };
 
+
+const searchHandler = async (event) => {
+  event.preventDefault();
+  const searchInput = document.querySelector('.Title-search input');
+  const search = searchInput.value.toLowerCase();
+  console.log(search);
+
+  const response = await fetch(`/api/recipes/search`, {
+    method: 'POST',
+    body: JSON.stringify({
+      search: search
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (response.ok) {
+   // document.location.replace('/profile');
+    console.log(response);
+} else {
+  console.log(response);
+    alert('Error');
+}
+}
+
+
+
+
+
 document
 .querySelector('.recipe-form')
 .addEventListener('submit', newFormHandler);
+console.log('check')
+
+document
+.querySelector('.search-button')
+.addEventListener('click', searchHandler);
 console.log('check')
