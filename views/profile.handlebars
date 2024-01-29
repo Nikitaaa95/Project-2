@@ -54,29 +54,16 @@
     <section class="Recipe-Search md:w-1/2 p-4">
         <div class="flex items-center w-full Title-search p-1">
             <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:border-blue-500" placeholder="Search by Title/Keyword">
-            <button class="px-4 py-2 bg-blue-500 text-white rounded-r-md search-button">Search</button>
+            <button onclick="replaceData()" class="px-4 py-2 bg-blue-500 text-white rounded-r-md search-button">Search</button>
         </div>  
-          {{#if recipes.length}}
-         <div class="col-md-6 blog-list">
-        <h3>Current Recipes:</h3>
-            {{#each recipes as |recipe|}}
-        <section class="md:w-1/2 bg-white p-8 my-8 md:ml-4 rounded-lg shadow-md">
-            <div class="row mb-2 w-full">
-            <div class="col-md-8">
-                <h4><a href="/api/recipes/{{recipe.id}}">{{recipe.title}}</a></h4>
-                <p>{{recipe.difficulty}}</p>
-            </div>
-            </div>
-            </section>
-             {{/each}}
-            </div>
-            {{/if}}
-
-        </div>
+        <section id="replacement">
+            {{replacement}}
+        </section>
     </section>
     </container>
 
 
      <script src="./js/profilebuttons.js"></script>
+     <script src="./js/recipeReplacement.js"></script>
 </body>
 </html>
