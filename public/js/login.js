@@ -1,4 +1,3 @@
-
 const loginFormHandler = async (event) => {
   event.preventDefault();
 
@@ -41,6 +40,7 @@ const signupFormHandler = async (event) => {
     if (response.ok) {
       document.location.replace('/profile');
     } else {
+      console.log(response);
       alert('Failed to sign up.');
     }
   }

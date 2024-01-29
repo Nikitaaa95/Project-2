@@ -3,31 +3,30 @@ const { Recipe, User } = require('../models');
 // Import the custom middleware
 const withAuth = require('../utils/auth');
 
-//Get the login/signup page to render 
+//Get the login/signup page to render
 router.get('/', async (req, res) => {
-  console.log('getroute')
+  console.log('getroute');
   try {
-    res.render('login', {
-    });
-    console.log("rendered login")
+    res.render('login', {});
+    console.log('rendered login');
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-// renders the current recipes on profile page 
+// renders the current recipes on profile page
 router.get('/profile', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const recipeData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: Recipe}],
+      // include: [{ model: Recipe}],
     });
     const recipe = recipeData.get({ plain: true });
 
     res.render('profile', {
       ...recipe,
-      logged_in: true
+      logged_in: true,
     });
   } catch (err) {
     console.log(err);
@@ -72,9 +71,9 @@ module.exports = router;
 //     const recipes = recipeData.map((recipe) => recipe.get({ plain: true }));
 
 //     // Pass serialized data and session flag into template
-//     res.render('homepage', { 
-//       recipes, 
-//       logged_in: req.session.logged_in 
+//     res.render('homepage', {
+//       recipes,
+//       logged_in: req.session.logged_in
 //     });
 //   } catch (err) {
 //     res.status(500).json(err);
