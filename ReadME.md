@@ -11,7 +11,7 @@ Use "npm run seed" to seed your data and then "npm run start" to start the appli
 
 ## Usage 
 Link to Heroku site: 
-https://gentle-escarpment-70286-c75ac32e7b81.herokuapp.com/login
+https://culinarycanvas.herokuapp.com/
 
 ![LoginPage](images/SignUpSignIn.png)
 ![ProfilePage](images/ProfilePage.png)
