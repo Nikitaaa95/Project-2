@@ -59,7 +59,6 @@ router.post('/search', async (req, res) => {
       }]
       }
     });
-      console.log(recipeData);
       res.json(recipeData);
     }
     catch (err) {
@@ -109,7 +108,6 @@ router.get('/', async (req, res) => {
     });
     
     const recipes = recipeData.map((recipe) => recipe.get({ plain: true }));
-    console.log('posts' + JSON.stringify(posts))
 
     res.render('recipe', {
       recipes,
