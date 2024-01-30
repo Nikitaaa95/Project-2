@@ -16,8 +16,6 @@ const newFormHandler = async (event) => {
   const step6 = document.querySelector('.step6').value.trim();
   
   // Add post 
-  // if (titleEl, imageEl, prepTimeEl, cookTimeEl, ingredientsEl, difficultyEl, step1El, step2El, step3El, step4El, step5El && step6El) 
-  // {
   const response = await fetch(`/api/recipes`, {
       method: 'POST',
       body: JSON.stringify({
@@ -44,7 +42,6 @@ const newFormHandler = async (event) => {
   } else {
       alert('Failed to create blog post');
   }
-  // }
 };
 
 
