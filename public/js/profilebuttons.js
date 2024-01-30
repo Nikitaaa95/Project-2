@@ -18,9 +18,6 @@ const newFormHandler = async (event) => {
   // Add post 
   // if (titleEl, imageEl, prepTimeEl, cookTimeEl, ingredientsEl, difficultyEl, step1El, step2El, step3El, step4El, step5El && step6El) 
   // {
-  console.log('posting')
-  console.log(title, preptime, cooktime, ingredients, difficulty, step1, step2, step3, step4, step5)
-  console.log(JSON.stringify(title, preptime, cooktime, ingredients, difficulty, step1, step2, step3, step4, step5, step6) )
   const response = await fetch(`/api/recipes`, {
       method: 'POST',
       body: JSON.stringify({
