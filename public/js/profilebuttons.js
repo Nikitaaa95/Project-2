@@ -16,8 +16,6 @@ const newFormHandler = async (event) => {
   const step6 = document.querySelector('.step6').value.trim();
   
   // Add post 
-  // if (titleEl, imageEl, prepTimeEl, cookTimeEl, ingredientsEl, difficultyEl, step1El, step2El, step3El, step4El, step5El && step6El) 
-  // {
   const response = await fetch(`/api/recipes`, {
       method: 'POST',
       body: JSON.stringify({
@@ -41,11 +39,9 @@ const newFormHandler = async (event) => {
   
   if (response.ok) {
      document.location.replace('/profile');
-      console.log(response);
   } else {
       alert('Failed to create blog post');
   }
-  // }
 };
 
 
@@ -53,7 +49,6 @@ const searchHandler = async (event) => {
   event.preventDefault();
   const searchInput = document.querySelector('.Title-search input');
   const search = searchInput.value.toLowerCase();
-  console.log(search);
 
   const response = await fetch(`/api/recipes/search`, {
     method: 'POST',
@@ -67,9 +62,7 @@ const searchHandler = async (event) => {
 
   if (response.ok) {
    // document.location.replace('/profile');
-    console.log(response);
 } else {
-  console.log(response);
     alert('Error');
 }
 }
@@ -81,9 +74,7 @@ const searchHandler = async (event) => {
 document
 .querySelector('.recipe-form')
 .addEventListener('submit', newFormHandler);
-console.log('check')
 
 document
 .querySelector('.search-button')
 .addEventListener('click', searchHandler);
-console.log('check')
